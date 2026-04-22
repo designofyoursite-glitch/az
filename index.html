@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anastasia & Zahit · 6 Haziran 2026</title>
+  <link rel="stylesheet" href="colors_and_type.css">
+  <style>
+    /* ================================================================
+       WEDDING PALETTE — override LCYS terracotta with lemon + leaf
+       ================================================================ */
+    :root {
+      --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
+      --font-body: 'Geist', ui-sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+
+      --paper-50:  #fffef7;
+      --paper-100: #fffef7;
+      --paper-200: #FFFBDE;
+      --paper-300: #E5DEC1;
+      --paper-400: #BDB48F;
+      --paper-500: #7A8064;
+
+      --ink-900: #3B512E;
+      --ink-800: #3B512E;
+      --ink-700: #3B512E;
+      --ink-600: #4E6540;
+
+      /* Warm accent */
+      --lemon-50:  #FFF3B1;
+      --lemon-100: #FFF3B1;
+      --lemon-300: #FFF3B1;
+      --lemon-500: #FFF3B1;
+      --lemon-600: #E4BD52;
+      --lemon-700: #9E7C24;
+
+      /* Leaf green */
+      --leaf-50:  #F2FAED;
+      --leaf-100: #DDF4D1;
+      --leaf-300: #B8E6A1;
+      --leaf-500: #679F4B;
+      --leaf-600: #679F4B;
+      --leaf-700: #3B512E;
+      --block-green: #738B66;
+
+      /* Semantic overrides */
+      --bg:            var(--paper-100);
+      --bg-raised:     var(--paper-50);
+      --bg-sunken:     var(--paper-200);
+      --fg:            var(--ink-900);
+      --fg-muted:      rgba(59, 81, 46, 0.68);
+      --fg-subtle:     rgba(59, 81, 46, 0.42);
+      --border:        var(--paper-300);
+      --border-strong: var(--paper-400);
+      --accent:        var(--lemon-500);
+      --accent-hover:  var(--lemon-600);
+      --accent-press:  var(--lemon-700);
+      --accent-bg:     var(--lemon-50);
+      --border-accent: var(--lemon-500);
+      --fg-accent:     var(--lemon-600);
+      --card-bg:       #FFFBDE;
+    }
+
+    /* ================================================================
+       BASE
+       ================================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+    }
+    img { display: block; }
+
+    /* ================================================================
+       LAYOUT HELPERS
+       ================================================================ */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 96px;
+    }
+
+    .section {
+      padding: 120px 0;
+    }
+
+    .section--sm {
+      padding: 72px 0;
+    }
+
+    /* ================================================================
+       LABELS
+       ================================================================ */
+    .label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--leaf-500);
+      margin-bottom: 28px;
+    }
+    .label::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--ink-900);
+      flex-shrink: 0;
+    }
+
+    /* ================================================================
+       DIVIDERS
+       ================================================================ */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 0 96px;
+    }
+    .divider-line { flex: 1; height: 1px; background: var(--border); }
+    .divider-lemon {
+      filter: sepia(0.6) hue-rotate(10deg) saturate(0.8);
+      opacity: 0.5;
+      flex-shrink: 0;
+    }
+
+    /* ================================================================
+       HERO
+       ================================================================ */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      min-height: 760px;
+      max-height: 1000px;
+    }
+
+    .hero-left {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px;
+      background: var(--paper-100);
+      overflow: hidden;
+    }
+
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      inset: 80px;
+      border: 1px solid #D8D8D8;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--leaf-500);
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .hero-small-lemons {
+      width: 220px;
+      margin: 92px 0 88px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-small-lemons img {
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-small-lemons::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--paper-100);
+      mix-blend-mode: color;
+      pointer-events: none;
+    }
+
+    .hero-names {
+      font-family: var(--font-display);
+      font-size: 78px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 0.95;
+      letter-spacing: 0;
+      color: var(--ink-900);
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
+    }
+
+    .hero-amp {
+      display: inline;
+      font-size: 0.86em;
+      color: var(--ink-900);
+      margin: 0;
+      font-style: normal;
+    }
+
+    .hero-date {
+      margin-top: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-date-main {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 500;
+      color: var(--ink-700);
+    }
+
+    .hero-location {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--ink-700);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+    }
+
+    /* ================================================================
+       WELCOME
+       ================================================================ */
+    .welcome-wrap {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .welcome-section {
+      background: #FFFDEC;
+      color: var(--fg);
+      padding: 144px 0;
+    }
+
+    .welcome-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 1.1;
+      color: var(--fg);
+      margin-bottom: 28px;
+    }
+
+    .welcome-text {
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-style: normal;
+      color: var(--fg);
+      line-height: 1.65;
+      margin: 0 auto;
+      max-width: 620px;
+    }
+
+    /* ================================================================
+       DATE + TIMING (two-column)
+       ================================================================ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .two-col--sep {
+      display: grid;
+      grid-template-columns: 1fr 1px 1fr;
+      gap: 0 80px;
+      align-items: start;
+    }
+
+    .date-col {
+      min-height: 306px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .col-sep {
+      background: var(--border);
+      align-self: stretch;
+      min-height: 200px;
+    }
+
+    .date-big {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink-900);
+    }
+
+    .date-sub {
+      margin-top: 14px;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--fg-muted);
+    }
+
+    .date-note {
+      margin-top: auto;
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-style: normal;
+      color: var(--ink-700);
+    }
+
+    .timing-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .timing-item {
+      display: flex;
+      align-items: baseline;
+      gap: 32px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .timing-item:last-child { border-bottom: none; }
+
+    .timing-time {
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      color: var(--fg-muted);
+      min-width: 44px;
+      flex-shrink: 0;
+    }
+
+    .timing-event {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--ink-800);
+    }
+
+    /* ================================================================
+       DRESS CODE
+       ================================================================ */
+    .dresscode-layout {
+      display: block;
+    }
+
+    .dresscode-body {
+      font-family: var(--font-body);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--ink-700);
+      max-width: 720px;
+      margin-bottom: 0;
+    }
+
+    .dresscode-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 400;
+      line-height: 0.95;
+      color: var(--ink-900);
+      margin-bottom: 28px;
+    }
+    .dresscode-body em {
+      font-style: normal;
+      color: var(--leaf-600);
+      font-weight: 600;
+    }
+
+    .dresscode-outfits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: 72px;
+    }
+
+    .dresscode-outfit {
+      display: grid;
+      grid-template-columns: minmax(180px, 42%) 1fr;
+      gap: 24px;
+      align-items: end;
+    }
+
+    .dresscode-outfit-photo {
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #FFFADF;
+    }
+
+    .dresscode-outfit-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .dresscode-outfit-caption {
+      padding-bottom: 4px;
+    }
+
+    .dresscode-card-title {
+      font-family: var(--font-body);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--leaf-500);
+      margin-bottom: 12px;
+    }
+
+    .dresscode-card-text {
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: var(--ink-700);
+    }
+
+    .lemon-art {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 200px;
+      margin-top: 16px;
+      position: relative;
+    }
+
+    .lemon-art img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: sepia(0.5) hue-rotate(10deg) saturate(0.7);
+      opacity: 0.45;
+    }
+
+    .lemon-art-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--lemon-50) 0%, var(--leaf-50) 100%);
+      mix-blend-mode: multiply;
+    }
+
+    /* ================================================================
+       PHOTO PLACEHOLDER
+       ================================================================ */
+    .photo-slot {
+      background: var(--card-bg);
+      border: none;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-slot span {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+    }
+
+    /* ================================================================
+       LOCATION
+       ================================================================ */
+    .location-name {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 0.95;
+      color: var(--ink-900);
+      margin-bottom: 28px;
+    }
+
+    .route-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 28px;
+      background: var(--ink-900);
+      border-radius: 4px;
+      border: none;
+      color: var(--paper-100);
+      font-family: var(--font-body);
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 200ms ease, color 200ms ease;
+    }
+
+    .route-btn:hover {
+      background: var(--leaf-500);
+      color: var(--paper-100);
+      text-decoration: none;
+    }
+
+    .map-card {
+      height: 420px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .map-card iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      border: none;
+      border-radius: 8px;
+      padding: 24px 28px;
+    }
+
+    .info-card p {
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 1.6;
+      color: var(--ink-700);
+      margin: 0;
+    }
+
+    .info-note {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--fg-subtle);
+      font-style: normal;
+    }
+
+    /* ================================================================
+       LOGISTICS (transfer + parking)
+       ================================================================ */
+    .logistics-title {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--ink-900);
+      margin-bottom: 20px;
+    }
+
+    .logistics-body {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--fg-muted);
+      margin-bottom: 24px;
+    }
+
+    /* ================================================================
+       COUNTDOWN — dark section
+       ================================================================ */
+    .countdown-section {
+      background: url('images/lemons.png') center / cover;
+      padding: 120px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-bg {
+      display: none;
+    }
+
+    .countdown-inner {
+      text-align: center;
+      position: relative;
+      max-width: 960px;
+      min-height: 330px;
+      margin: 0 auto;
+      padding: 88px 72px;
+      background: var(--paper-100);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .countdown-inner::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 1px solid #D8D8D8;
+      pointer-events: none;
+    }
+
+    .countdown-eyebrow {
+      font-family: var(--font-body);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--leaf-500);
+      margin-bottom: 56px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      max-width: 680px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .cd-block {
+      flex: 1;
+      text-align: center;
+      padding: 48px 24px;
+      border-right: 1px solid rgba(59, 81, 46, 0.14);
+    }
+    .cd-block:last-child { border-right: none; }
+
+    .cd-num {
+      font-family: var(--font-display);
+      font-size: 88px;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--ink-900);
+      line-height: 1;
+    }
+
+    .cd-unit {
+      margin-top: 14px;
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--leaf-500);
+    }
+
+    /* ================================================================
+       RSVP
+       ================================================================ */
+    .rsvp-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .rsvp-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink-900);
+      margin-bottom: 32px;
+    }
+
+    .rsvp-intro {
+      font-family: var(--font-body);
+      font-size: 22px;
+      font-style: normal;
+      line-height: 1.65;
+      color: var(--ink-700);
+      margin-bottom: 48px;
+    }
+    .rsvp-intro em {
+      color: var(--leaf-500);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .rsvp-field { margin-bottom: 24px; }
+
+    .rsvp-field label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--leaf-500);
+      margin-bottom: 8px;
+    }
+
+    .rsvp-field input,
+    .rsvp-field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #D8D8D8;
+      border-radius: 0;
+      padding: 14px 0;
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--fg);
+      outline: none;
+      transition: border-color 200ms ease;
+    }
+    .rsvp-field input::placeholder,
+    .rsvp-field textarea::placeholder { color: var(--fg-subtle); }
+    .rsvp-field input:focus,
+    .rsvp-field textarea:focus { border-bottom-color: var(--leaf-500); }
+    .rsvp-field textarea { resize: none; height: 96px; }
+
+    .rsvp-radios {
+      display: flex;
+      border: none;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .rsvp-radio-opt {
+      flex: 1;
+      text-align: center;
+      padding: 13px 16px;
+      font-family: var(--font-body);
+      font-size: 18px;
+      cursor: pointer;
+      color: var(--fg-muted);
+      transition: background 180ms ease, color 180ms ease;
+      border-right: 1px solid var(--border);
+      user-select: none;
+    }
+    .rsvp-radio-opt:last-child { border-right: none; }
+    .rsvp-radio-opt.active {
+      background: #D8D8D8;
+      color: var(--ink-900);
+      font-style: normal;
+    }
+
+    .rsvp-btn {
+      width: 100%;
+      margin-top: 8px;
+      padding: 18px;
+      background: var(--ink-900);
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-body);
+      font-size: 18px;
+      font-weight: 600;
+      font-style: normal;
+      color: var(--paper-100);
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 200ms ease, border-color 200ms ease, color 200ms ease;
+    }
+    .rsvp-btn:hover {
+      background: var(--leaf-500);
+      color: var(--paper-100);
+    }
+
+    /* ================================================================
+       FOOTER
+       ================================================================ */
+    .footer {
+      background: var(--paper-100);
+      border-top: none;
+      padding: 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-lemon-bg {
+      display: none;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+
+    .footer-panel,
+    .footer-image {
+      aspect-ratio: 1 / 1;
+    }
+
+    .footer-panel {
+      background: #FFFDEC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+    }
+
+    .footer-content {
+      position: relative;
+    }
+
+    .footer-image {
+      overflow: hidden;
+    }
+
+    .footer-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .footer-monogram {
+      font-family: var(--font-display);
+      font-size: 96px;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--leaf-500);
+      line-height: 1;
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .footer-main {
+      font-family: var(--font-body);
+      font-size: 28px;
+      font-style: normal;
+      color: var(--ink-900);
+      line-height: 1.5;
+      position: relative;
+    }
+
+    .footer-sub {
+      margin-top: 12px;
+      font-size: 18px;
+      font-family: var(--font-body);
+      font-style: normal;
+      color: var(--ink-700);
+      position: relative;
+    }
+
+    .footer-stamp {
+      margin-top: 56px;
+      font-family: var(--font-body);
+      font-size: 11pt;
+      font-weight: 600;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--lemon-500);
+      position: relative;
+    }
+
+    .label,
+    .hero-eyebrow,
+    .dresscode-card-title,
+    .countdown-eyebrow,
+    .cd-unit,
+    .rsvp-field label,
+    .footer-stamp {
+      color: var(--leaf-500);
+    }
+
+    .hero-names,
+    .hero-date-main,
+    .hero-location,
+    .welcome-title,
+    .date-big,
+    .dresscode-title,
+    .location-name,
+    .logistics-title,
+    .cd-num,
+    .footer-monogram {
+      letter-spacing: -0.02em;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">Düğün Davetiyesi</div>
+
+      <div class="hero-names">
+        Anastasia <span class="hero-amp">&amp;</span> Zahit
+      </div>
+
+      <div class="hero-small-lemons">
+        <img src="images/small lemons.png" alt="">
+      </div>
+
+      <div class="hero-date">
+        <div class="hero-date-main">06.06.2026</div>
+        <div class="hero-location">Adana</div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <img src="images/main.jpg" alt="Anastasia & Zahit">
+    </div>
+  </section>
+
+  <!-- ===== WELCOME ===== -->
+  <section class="section welcome-section">
+    <div class="container">
+      <div class="welcome-wrap">
+        <div class="welcome-title">
+          Sevgili dostlarımız ve ailemiz
+        </div>
+        <div class="welcome-text">
+          Bu özel günü sizinle paylaşmaktan mutluluk duyuyoruz. Mutluluk, paylaşıldığında gerçektir.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DATE & TIMING ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col--sep">
+
+        <!-- Save the date -->
+        <div class="date-col">
+          <div class="label">Tarihi kaydedin</div>
+          <div class="date-big">6 Haziran 2026</div>
+          <div class="date-sub">Cumartesi</div>
+        </div>
+
+        <div class="col-sep"></div>
+
+        <!-- Timing -->
+        <div>
+          <div class="label">Günün Programı</div>
+          <ul class="timing-list">
+            <li class="timing-item">
+              <span class="timing-time">18:00</span>
+              <span class="timing-event">Misafir karşılama alanı</span>
+            </li>
+            <li class="timing-item">
+              <span class="timing-time">19:00</span>
+              <span class="timing-event">Tören</span>
+            </li>
+            <li class="timing-item">
+              <span class="timing-time">19:30</span>
+              <span class="timing-event">Yemek, dans ve eğlence</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <svg width="10" height="10" viewBox="0 0 10 10" class="divider-lemon"><circle cx="5" cy="5" r="4" fill="#FFF3B1" opacity="0.9"/></svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== DRESS CODE ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="dresscode-layout">
+
+        <div class="dresscode-intro">
+          <div class="label">Kıyafet Kodu</div>
+          <div class="dresscode-title">Gecenin stili: boho chic / rustik</div>
+          <div class="dresscode-body">
+            Düğünümüz için çiftliği seçtik, çünkü doğayı seviyor ve doğallığa değer veriyoruz. Bu yüzden en önemlisi kendinizi rahat hissetmeniz.
+          </div>
+        </div>
+
+        <div class="dresscode-outfits">
+          <div class="dresscode-outfit">
+            <div class="dresscode-outfit-photo">
+              <img src="images/women.jpg" alt="Kadınlar için kıyafet önerisi">
+            </div>
+            <div class="dresscode-outfit-caption">
+              <div class="dresscode-card-title">Kadınlar için</div>
+              <div class="dresscode-card-text">
+                Hafif elbiseler, doğal kumaşlar. Topuklu ayakkabı önermiyoruz; alanın zemini çoğunlukla çim.
+              </div>
+            </div>
+          </div>
+
+          <div class="dresscode-outfit">
+            <div class="dresscode-outfit-photo">
+              <img src="images/men.jpg" alt="Erkekler için kıyafet önerisi">
+            </div>
+            <div class="dresscode-outfit-caption">
+              <div class="dresscode-card-title">Erkekler için</div>
+              <div class="dresscode-card-text">
+                Keten takım, kravatsız gömlek ve hafif loaferlar.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <svg width="10" height="10" viewBox="0 0 10 10" class="divider-lemon"><circle cx="5" cy="5" r="4" fill="#FFF3B1" opacity="0.9"/></svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== LOCATION ===== -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+
+        <div>
+          <div class="label">Konum</div>
+          <div class="location-name">Çiftlik Evimiz</div>
+          <a class="route-btn" href="https://maps.app.goo.gl/gB5HPpWniHoodmcz6?g_st=ic" target="_blank" rel="noopener">Yol tarifi al</a>
+        </div>
+
+        <div class="map-card">
+          <iframe
+            src="https://www.google.com/maps?q=36.8758123,35.4253292&z=13&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Our Farmhouse map"></iframe>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider">
+    <div class="divider-line"></div>
+    <svg width="10" height="10" viewBox="0 0 10 10" class="divider-lemon"><circle cx="5" cy="5" r="4" fill="#FFF3B1" opacity="0.9"/></svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== TRANSFER & PARKING ===== -->
+  <section class="section--sm">
+    <div class="container">
+      <div class="two-col">
+
+        <div>
+          <div class="label">Transfer</div>
+          <div class="logistics-body">
+            Şehirden çiftliğe transfer organize ettik; böylece gece boyunca eğlenebilir ve dönüş yolunu düşünmek zorunda kalmazsınız.
+          </div>
+        </div>
+
+        <div>
+          <div class="label">Otopark</div>
+          <div class="logistics-body">
+            Otopark alanı sınırlıdır. Transferi kullanmanızı tavsiye ederiz.
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COUNTDOWN ===== -->
+  <section class="countdown-section">
+    <div class="countdown-bg"></div>
+    <div class="container">
+      <div class="countdown-inner">
+        <div class="countdown-eyebrow">Düğünümüze kalan süre</div>
+        <div class="countdown-grid">
+          <div class="cd-block">
+            <div class="cd-num" id="cd-d">—</div>
+            <div class="cd-unit">gün</div>
+          </div>
+          <div class="cd-block">
+            <div class="cd-num" id="cd-h">—</div>
+            <div class="cd-unit">saat</div>
+          </div>
+          <div class="cd-block">
+            <div class="cd-num" id="cd-m">—</div>
+            <div class="cd-unit">dakika</div>
+          </div>
+          <div class="cd-block">
+            <div class="cd-num" id="cd-s">—</div>
+            <div class="cd-unit">saniye</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER -->
+  <div class="divider" style="padding: 56px 96px;">
+    <div class="divider-line"></div>
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" class="divider-lemon">
+      <circle cx="14" cy="14" r="4" stroke="#679F4B" stroke-width="1"/>
+      <circle cx="14" cy="14" r="10" stroke="#FFF3B1" stroke-width="0.7" stroke-dasharray="3 3"/>
+    </svg>
+    <div class="divider-line"></div>
+  </div>
+
+  <!-- ===== RSVP ===== -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="rsvp-wrap">
+        <div class="rsvp-title">Katılım onayı</div>
+        <div class="rsvp-intro">
+          Düğün hazırlıklarımızı tamamlayabilmemiz için lütfen katılım durumunuzu <em>5 Mayıs’a kadar</em> bize bildirin.
+        </div>
+
+        <div class="rsvp-field">
+          <label>İsim</label>
+          <input type="text" placeholder="Adınız">
+        </div>
+
+        <div class="rsvp-field">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com">
+        </div>
+
+        <div class="rsvp-field">
+          <label>Bizimle olacak mısınız?</label>
+          <div class="rsvp-radios">
+            <div class="rsvp-radio-opt active" onclick="setRadio(this,'attend')">Evet, katılacağım</div>
+            <div class="rsvp-radio-opt" onclick="setRadio(this,'attend')">Maalesef katılamayacağım</div>
+          </div>
+        </div>
+
+        <div class="rsvp-field" id="transfer-field">
+          <label>Transferi kullanacak mısınız?</label>
+          <div class="rsvp-radios">
+            <div class="rsvp-radio-opt active" onclick="setRadio(this,'transfer')">Evet</div>
+            <div class="rsvp-radio-opt" onclick="setRadio(this,'transfer')">Hayır</div>
+          </div>
+        </div>
+
+        <div class="rsvp-field">
+          <label>Notlar</label>
+          <textarea placeholder="Beslenme tercihleri, sorular…"></textarea>
+        </div>
+
+        <button class="rsvp-btn">Yanıtı gönder</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-lemon-bg"></div>
+    <div class="footer-grid">
+      <div class="footer-panel">
+        <div class="footer-content">
+
+          <div class="footer-monogram">A &amp; Z</div>
+
+          <div class="footer-main">Görüşmek üzere!</div>
+          <div class="footer-sub">
+            Bu önemli günümüzde sizi<br>aramızda görmekten mutluluk duyarız
+          </div>
+
+        </div>
+      </div>
+      <div class="footer-image">
+        <img src="images/table 2.png" alt="">
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function setRadio(el, group) {
+      el.parentElement.querySelectorAll('.rsvp-radio-opt').forEach(l => l.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    function updateCountdown() {
+      const target = new Date('2026-06-06T18:00:00');
+      const now = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        ['cd-d','cd-h','cd-m','cd-s'].forEach(id => document.getElementById(id).textContent = '0');
+        return;
+      }
+      document.getElementById('cd-d').textContent = Math.floor(diff / 86400000);
+      document.getElementById('cd-h').textContent = Math.floor((diff % 86400000) / 3600000);
+      document.getElementById('cd-m').textContent = Math.floor((diff % 3600000) / 60000);
+      document.getElementById('cd-s').textContent = Math.floor((diff % 60000) / 1000);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+
+</body>
+</html>
