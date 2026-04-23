@@ -136,10 +136,13 @@
        ================================================================ */
     .hero {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      height: 100vh;
-      min-height: 760px;
-      max-height: 1000px;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 36px;
+      align-items: stretch;
+      width: min(100% - 144px, 1660px);
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 90px 0;
     }
 
     .hero-left {
@@ -149,6 +152,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      min-height: clamp(560px, 82vh, 860px);
       padding: 80px;
       background: var(--paper-100);
       overflow: hidden;
@@ -157,7 +161,7 @@
     .hero-left::before {
       content: '';
       position: absolute;
-      inset: 80px;
+      inset: 0;
       border: 1px solid #D8D8D8;
       pointer-events: none;
     }
@@ -243,6 +247,7 @@
     .hero-right {
       position: relative;
       overflow: hidden;
+      min-height: clamp(560px, 82vh, 860px);
     }
 
     .hero-right img {
@@ -250,6 +255,90 @@
       height: 100%;
       object-fit: cover;
       object-position: center 20%;
+    }
+
+    @media (max-width: 1180px) {
+      .hero {
+        width: min(100% - 80px, 1120px);
+        gap: 28px;
+      }
+
+      .hero-left,
+      .hero-right {
+        min-height: clamp(520px, 72vw, 760px);
+      }
+
+      .hero-left {
+        padding: 64px 44px;
+      }
+
+      .hero-names {
+        font-size: clamp(54px, 5.9vw, 78px);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0;
+        width: 100%;
+        min-height: 100vh;
+        padding: 0;
+      }
+
+      .hero-left {
+        min-height: auto;
+        padding: 72px 28px 58px;
+        overflow: visible;
+      }
+
+      .hero-left::before {
+        display: none;
+      }
+
+      .hero-eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.24em;
+        margin-bottom: 20px;
+      }
+
+      .hero-names {
+        font-size: clamp(50px, 12vw, 66px);
+        line-height: 0.98;
+        white-space: nowrap;
+      }
+
+      .hero-small-lemons {
+        width: 150px;
+        margin: 34px 0 36px;
+      }
+
+      .hero-date-main,
+      .hero-location {
+        font-size: 22px;
+        line-height: 1.25;
+      }
+
+      .hero-right {
+        width: 100%;
+        min-height: 0;
+        height: min(86vw, 400px);
+      }
+
+      .hero-right img {
+        object-position: center 28%;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-left {
+        padding-inline: 20px;
+      }
+
+      .hero-names {
+        font-size: clamp(42px, 12vw, 50px);
+      }
     }
 
     /* ================================================================
@@ -895,6 +984,452 @@
     .cd-num,
     .footer-monogram {
       letter-spacing: -0.02em;
+    }
+
+    /* ================================================================
+       RESPONSIVE
+       ================================================================ */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 56px;
+      }
+
+      .section {
+        padding: 96px 0;
+      }
+
+      .section--sm {
+        padding: 64px 0;
+      }
+
+      .divider {
+        padding: 0 56px;
+      }
+
+      .hero {
+        width: min(100% - 56px, 920px);
+        gap: 24px;
+        padding: 64px 0;
+      }
+
+      .hero-left,
+      .hero-right {
+        min-height: clamp(500px, 64vw, 680px);
+      }
+
+      .hero-left {
+        padding: 56px 36px;
+      }
+
+      .hero-eyebrow,
+      .label,
+      .dresscode-card-title,
+      .countdown-eyebrow,
+      .rsvp-field label {
+        font-size: 12px;
+      }
+
+      .hero-names {
+        font-size: clamp(48px, 5.8vw, 64px);
+      }
+
+      .hero-small-lemons {
+        width: 170px;
+        margin: 64px 0 60px;
+      }
+
+      .hero-date-main,
+      .hero-location {
+        font-size: 28px;
+      }
+
+      .welcome-section {
+        padding: 112px 0;
+      }
+
+      .welcome-title,
+      .date-big,
+      .dresscode-title,
+      .location-name,
+      .rsvp-title {
+        font-size: clamp(52px, 7vw, 68px);
+      }
+
+      .two-col {
+        gap: 48px;
+      }
+
+      .two-col--sep {
+        gap: 0 48px;
+      }
+
+      .dresscode-outfits {
+        gap: 36px;
+      }
+
+      .dresscode-outfit {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .dresscode-outfit-caption {
+        padding-bottom: 0;
+      }
+
+      .countdown-section {
+        padding: 96px 0;
+      }
+
+      .countdown-inner {
+        padding: 72px 48px;
+      }
+
+      .cd-block {
+        padding: 36px 16px;
+      }
+
+      .cd-num {
+        font-size: clamp(58px, 8vw, 78px);
+      }
+
+      .footer-panel {
+        padding: 56px;
+      }
+
+      .footer-monogram {
+        font-size: 76px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        padding: 0 24px;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .section--sm {
+        padding: 56px 0;
+      }
+
+      .divider {
+        gap: 16px;
+        padding: 0 24px;
+      }
+
+      .divider[style] {
+        padding: 40px 24px !important;
+      }
+
+      .label {
+        gap: 8px;
+        letter-spacing: 0.16em;
+        margin-bottom: 18px;
+      }
+
+      .label::before {
+        width: 22px;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: 100vh;
+        height: 100svh;
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 0;
+      }
+
+      .hero-right {
+        flex: 0 0 43vh;
+        flex-basis: 43svh;
+        height: auto;
+        min-height: 0;
+      }
+
+      .hero-right img {
+        object-position: center 20%;
+      }
+
+      .hero-left {
+        flex: 1 1 auto;
+        min-height: 0;
+        justify-content: center;
+        padding: 28px 24px 34px;
+      }
+
+      .hero-eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.22em;
+        margin-bottom: 14px;
+      }
+
+      .hero-names {
+        font-size: clamp(42px, 11.6vw, 56px);
+        line-height: 0.96;
+      }
+
+      .hero-small-lemons {
+        width: clamp(108px, 30vw, 132px);
+        margin: 22px 0 24px;
+      }
+
+      .hero-date-main,
+      .hero-location {
+        font-size: 20px;
+        line-height: 1.18;
+      }
+
+      .welcome-section {
+        padding: 80px 0;
+      }
+
+      .welcome-title,
+      .date-big,
+      .dresscode-title,
+      .location-name,
+      .rsvp-title {
+        font-size: clamp(42px, 12vw, 56px);
+        line-height: 1;
+      }
+
+      .welcome-text,
+      .dresscode-body,
+      .timing-event,
+      .info-card p,
+      .rsvp-intro {
+        font-size: 17px;
+        line-height: 1.6;
+      }
+
+      .two-col,
+      .two-col--sep {
+        grid-template-columns: 1fr;
+        gap: 44px;
+      }
+
+      .date-col {
+        min-height: 0;
+      }
+
+      .col-sep {
+        display: none;
+      }
+
+      .timing-item {
+        gap: 20px;
+        padding: 18px 0;
+      }
+
+      .dresscode-outfits {
+        grid-template-columns: 1fr;
+        gap: 44px;
+        margin-top: 48px;
+      }
+
+      .dresscode-outfit {
+        grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr);
+        gap: 18px;
+      }
+
+      .dresscode-card-text,
+      .logistics-body {
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .map-card {
+        height: 340px;
+      }
+
+      .route-btn {
+        width: 100%;
+      }
+
+      .countdown-section {
+        padding: 72px 0;
+      }
+
+      .countdown-inner {
+        min-height: 0;
+        padding: 56px 24px;
+      }
+
+      .countdown-inner::before {
+        inset: 14px;
+      }
+
+      .countdown-eyebrow {
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        margin-bottom: 28px;
+      }
+
+      .countdown-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cd-block {
+        padding: 26px 12px;
+        border-right: 1px solid rgba(59, 81, 46, 0.14);
+        border-bottom: 1px solid rgba(59, 81, 46, 0.14);
+      }
+
+      .cd-block:nth-child(2n) {
+        border-right: none;
+      }
+
+      .cd-block:nth-last-child(-n + 2) {
+        border-bottom: none;
+      }
+
+      .cd-num {
+        font-size: 52px;
+      }
+
+      .rsvp-wrap {
+        max-width: none;
+      }
+
+      .rsvp-intro {
+        margin-bottom: 36px;
+      }
+
+      .rsvp-radios {
+        flex-direction: column;
+      }
+
+      .rsvp-radio-opt {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .rsvp-radio-opt:last-child {
+        border-bottom: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-image {
+        order: -1;
+      }
+
+      .footer-panel,
+      .footer-image {
+        aspect-ratio: auto;
+      }
+
+      .footer-image {
+        height: 360px;
+      }
+
+      .footer-panel {
+        min-height: 360px;
+        padding: 56px 24px;
+      }
+
+      .footer-monogram {
+        font-size: 64px;
+        margin-bottom: 24px;
+      }
+
+      .footer-main {
+        font-size: 22px;
+      }
+
+      .footer-sub {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
+
+      .hero-right {
+        flex-basis: 42vh;
+        flex-basis: 42svh;
+      }
+
+      .hero-left {
+        padding: 22px 18px 28px;
+      }
+
+      .hero-eyebrow {
+        margin-bottom: 12px;
+      }
+
+      .hero-names {
+        font-size: clamp(39px, 11.4vw, 48px);
+      }
+
+      .hero-small-lemons {
+        width: 104px;
+        margin: 18px 0 20px;
+      }
+
+      .hero-date-main,
+      .hero-location {
+        font-size: 18px;
+      }
+
+      .dresscode-outfit {
+        grid-template-columns: 1fr;
+      }
+
+      .dresscode-outfit-photo {
+        max-width: 74%;
+      }
+
+      .map-card {
+        height: 300px;
+      }
+
+      .countdown-inner {
+        padding: 48px 18px;
+      }
+
+      .cd-num {
+        font-size: 46px;
+      }
+
+      .footer-image {
+        height: 300px;
+      }
+    }
+
+    @media (max-height: 700px) and (max-width: 760px) {
+      .hero-right {
+        flex-basis: 38vh;
+        flex-basis: 38svh;
+      }
+
+      .hero-left {
+        padding-top: 18px;
+        padding-bottom: 22px;
+      }
+
+      .hero-small-lemons {
+        width: 96px;
+        margin: 14px 0 16px;
+      }
+
+      .hero-eyebrow {
+        margin-bottom: 10px;
+      }
     }
 
   </style>
