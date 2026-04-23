@@ -838,6 +838,9 @@
     }
 
     .rsvp-radio-opt {
+      appearance: none;
+      background: transparent;
+      border: 0;
       flex: 1;
       text-align: center;
       padding: 13px 16px;
@@ -875,6 +878,25 @@
     .rsvp-btn:hover {
       background: var(--leaf-500);
       color: var(--paper-100);
+    }
+
+    .rsvp-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.72;
+    }
+
+    .rsvp-status {
+      min-height: 24px;
+      margin-top: 16px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-700);
+      text-align: center;
+    }
+
+    .rsvp-status.error {
+      color: #8A3D2F;
     }
 
     /* ================================================================
@@ -1675,7 +1697,7 @@
   <!-- ===== RSVP ===== -->
   <section class="section" style="padding-top: 40px;">
     <div class="container">
-      <div class="rsvp-wrap">
+      <form class="rsvp-wrap" id="rsvp-form">
         <div class="rsvp-title">Katılım onayı</div>
         <div class="rsvp-intro">
           Düğün hazırlıklarımızı tamamlayabilmemiz için lütfen katılım durumunuzu <em>5 Mayıs’a kadar</em> bize bildirin.
@@ -1683,37 +1705,40 @@
 
         <div class="rsvp-field">
           <label>İsim</label>
-          <input type="text" placeholder="Adınız">
+          <input type="text" name="name" placeholder="Adınız" required>
         </div>
 
         <div class="rsvp-field">
           <label>Email</label>
-          <input type="email" placeholder="your@email.com">
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
 
         <div class="rsvp-field">
           <label>Bizimle olacak mısınız?</label>
           <div class="rsvp-radios">
-            <div class="rsvp-radio-opt active" onclick="setRadio(this,'attend')">Evet, katılacağım</div>
-            <div class="rsvp-radio-opt" onclick="setRadio(this,'attend')">Maalesef katılamayacağım</div>
+            <button class="rsvp-radio-opt active" type="button" data-group="presence" data-value="Evet, katılacağım">Evet, katılacağım</button>
+            <button class="rsvp-radio-opt" type="button" data-group="presence" data-value="Maalesef katılamayacağım">Maalesef katılamayacağım</button>
           </div>
+          <input type="hidden" name="presence" value="Evet, katılacağım">
         </div>
 
         <div class="rsvp-field" id="transfer-field">
           <label>Transferi kullanacak mısınız?</label>
           <div class="rsvp-radios">
-            <div class="rsvp-radio-opt active" onclick="setRadio(this,'transfer')">Evet</div>
-            <div class="rsvp-radio-opt" onclick="setRadio(this,'transfer')">Hayır</div>
+            <button class="rsvp-radio-opt active" type="button" data-group="transfer" data-value="Evet">Evet</button>
+            <button class="rsvp-radio-opt" type="button" data-group="transfer" data-value="Hayır">Hayır</button>
           </div>
+          <input type="hidden" name="transfer" value="Evet">
         </div>
 
         <div class="rsvp-field">
           <label>Notlar</label>
-          <textarea placeholder="Beslenme tercihleri, sorular…"></textarea>
+          <textarea name="comment" placeholder="Beslenme tercihleri, sorular…"></textarea>
         </div>
 
-        <button class="rsvp-btn">Yanıtı gönder</button>
-      </div>
+        <button class="rsvp-btn" type="submit">Yanıtı gönder</button>
+        <div class="rsvp-status" id="rsvp-status" aria-live="polite"></div>
+      </form>
     </div>
   </section>
 
@@ -1740,10 +1765,76 @@
   </footer>
 
   <script>
-    function setRadio(el, group) {
-      el.parentElement.querySelectorAll('.rsvp-radio-opt').forEach(l => l.classList.remove('active'));
-      el.classList.add('active');
-    }
+    const RSVP_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyncep4cVaiN841AshiC8q2vUNDSQcHu6v4yVarSJQ0cw_BtOQ7EjM8QKkMi0o4w1Zk/exec';
+
+    document.querySelectorAll('.rsvp-radio-opt').forEach(option => {
+      option.addEventListener('click', () => {
+        const group = option.dataset.group;
+        const form = option.closest('form');
+        const hiddenInput = form.querySelector(`input[name="${group}"]`);
+
+        option.parentElement.querySelectorAll('.rsvp-radio-opt').forEach(item => {
+          item.classList.remove('active');
+        });
+
+        option.classList.add('active');
+        hiddenInput.value = option.dataset.value;
+      });
+    });
+
+    const rsvpForm = document.getElementById('rsvp-form');
+    const rsvpStatus = document.getElementById('rsvp-status');
+    const rsvpButton = rsvpForm.querySelector('.rsvp-btn');
+
+    rsvpForm.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      if (!rsvpForm.checkValidity()) {
+        rsvpForm.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(rsvpForm);
+      const payload = {
+        name: formData.get('name').trim(),
+        email: formData.get('email').trim(),
+        presence: formData.get('presence'),
+        transfer: formData.get('transfer'),
+        comment: formData.get('comment').trim()
+      };
+
+      rsvpButton.disabled = true;
+      rsvpButton.textContent = 'Gönderiliyor...';
+      rsvpStatus.classList.remove('error');
+      rsvpStatus.textContent = '';
+
+      try {
+        await fetch(RSVP_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        rsvpForm.reset();
+        rsvpForm.querySelector('input[name="presence"]').value = 'Evet, katılacağım';
+        rsvpForm.querySelector('input[name="transfer"]').value = 'Evet';
+        document.querySelectorAll('.rsvp-radios').forEach(group => {
+          group.querySelectorAll('.rsvp-radio-opt').forEach((option, index) => {
+            option.classList.toggle('active', index === 0);
+          });
+        });
+        rsvpStatus.textContent = 'Teşekkürler! Yanıtınız kaydedildi.';
+      } catch (error) {
+        rsvpStatus.classList.add('error');
+        rsvpStatus.textContent = 'Bir hata oluştu. Lütfen biraz sonra tekrar deneyin.';
+      } finally {
+        rsvpButton.disabled = false;
+        rsvpButton.textContent = 'Yanıtı gönder';
+      }
+    });
 
     function updateCountdown() {
       const target = new Date('2026-06-06T18:00:00');
